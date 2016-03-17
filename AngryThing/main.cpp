@@ -14,10 +14,11 @@ int main(int argc, char *argv[])
     MainWindow w(width-200, height-100);
     // ================= Setting Windows Title and Icon =================
     w.setWindowTitle("AngryThings");
-    w.setWindowIcon(QIcon("../Image_Src/bird1.png"));
+    w.setWindowIcon(QIcon("../angrything_img_src/object/Normal_Bird_1.png"));
     // ================= Calculate for frame size =================
     w.setFixedSize(width , height);
     w.settingBackground(width-200,height);
+    w.settingInitObj();
     // set frame size
     w.setGeometry((screenWidth/2)-(width/2) , (screenHeight/2) - (height/2) , width , height);
     w.show();

@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <gameitem.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <iostream>
@@ -20,11 +21,20 @@ public:
     ~MainWindow();
     /* Functions */
     void settingBackground(int bgw,int bgh);
+    void settingInitObj();
     /* Variables */
     QGraphicsScene *scene;
     int screenWidth;
     int screenHeight;
-
+    /* Game obj */
+    gameItem *bird1;
+    QString bird1_path;
+    /* FIXME : need to change catapult class */
+    gameItem *catapult_upper;
+    QString cata_up_path;
+    gameItem *catapult_lower;
+    QString cata_lo_path;
+    /* FIXME : need to reset the z-value for all items */
 private:
     Ui::MainWindow *ui;
 };
