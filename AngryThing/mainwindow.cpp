@@ -9,8 +9,7 @@ MainWindow::MainWindow(int width, int height,QWidget *parent) :
     screenWidth = width;
     screenHeight = height;
     // setting the scene size
-    scene = new Scene(parent);
-    //scene = new QGraphicsScene(-10,-10,screenWidth,screenHeight);
+    scene = new Scene(screenWidth , screenHeight ,parent);
     scene->setSceneRect(10,25,screenWidth,screenHeight);
     // Put scene in graphicsView
     ui->graphicsView->setScene(scene);
@@ -43,10 +42,5 @@ void MainWindow::settingInitObj()
         cout << item->zValue() << endl;
     }
     */
-
-    /* Bucket line */
-    /*QPen pen(Qt::black,8);
-    QLineF line(65,400,55,430);
-    scene->addLine(line , pen);*/
 }
 
