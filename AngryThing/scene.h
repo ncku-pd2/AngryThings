@@ -5,13 +5,15 @@
 #include <QGraphicsSceneMouseEvent>
 #include <iostream>
 #include <gameitem.h>
+#include <QTimer>
+#include <math.h>
 
 using namespace std;
 
 class Scene : public QGraphicsScene
 {
 public:
-    Scene(QObject* parent = 0);
+    Scene(qreal screenS_x, qreal screenS_y ,QObject* parent = 0);
     void repaint();
     /* Location data */
     qreal shooting_item_x;
@@ -30,6 +32,8 @@ public:
     qreal boundary_left;
     qreal boundary_right;
 
+    qreal screenSize_x;
+    qreal screenSize_y;
     /* Line Item */
     QGraphicsLineItem *upper_line;
     QGraphicsLineItem *lower_line;
@@ -47,6 +51,9 @@ public:
     QString cata_lo_path;
     gameItem *bucket;
     QString bucket_path;
+
+    /* QTimer */
+    QTimer *timer;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

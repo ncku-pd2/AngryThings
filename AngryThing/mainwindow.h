@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <iostream>
+#include <QTimer>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ public:
     Scene* scene;
     int screenWidth;
     int screenHeight;
+
 private:
     Ui::MainWindow *ui;
 };
