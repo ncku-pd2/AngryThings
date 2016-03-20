@@ -6,7 +6,7 @@ using namespace std;
 gameItem::gameItem(qreal size_x, qreal size_y)
 {
     status = 0;
-    grav_accel = 0.5;
+    grav_accel = 0.05;
     x_accel = 0;
     y_accel = 0;
     speed_x = 0;
@@ -35,18 +35,18 @@ void gameItem::advance(int phase)
     }
     else if(status == 0){
         /* Calculate the physic status */
-        speed_y += (0.5)*grav_accel;
-        x_accel = -0.1;
+        speed_y += (0.1)*grav_accel;
+        x_accel = -0.01;
 
         if(speed_x > 0)
             speed_x += x_accel;
-        else
-            speed_x = 0;
+        else if(speed_x < 0)
+            speed_x -= x_accel;
 
         this->setPos(this->pos().x()+speed_x,this->pos().y()+speed_y);
     }
-    cout<< this->pos().x() << " ; " << this->pos().y() << endl;
-    cout<< "speed is "<< this->speed_y << endl;
+    //cout<< this->pos().x() << " ; " << this->pos().y() << endl;
+    //cout<< "speed is "<< this->speed_y << endl;
     checkBoundary();
 }
 
@@ -76,7 +76,7 @@ void gameItem::checkBoundary()
     }
     else if(obj_y > upperBound && obj_y <= lowerBound)
     {
-        if(obj_x < leftBound)
+        if(obj_x <= leftBound)
         {
             this->setPos(leftBound,obj_y);
             this->speed_x = 0;
@@ -102,6 +102,10 @@ void gameItem::checkBoundary()
         else if(obj_x > leftBound && obj_x <= rightBound)
         {
             this->setPos(obj_x , lowerBound);
+            if(this->speed_x > 0)
+                this->speed_x -= 0.01;
+            else if(this->speed_x < 0)
+                this->speed_x += 0.5;
             this->speed_y = 0;
         }
         else if(obj_x > rightBound)

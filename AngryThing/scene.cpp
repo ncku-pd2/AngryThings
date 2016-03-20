@@ -73,24 +73,22 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
 
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
-    timer->start(100);
+    timer->start(10);
 }
 
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     /* For debugging  */
     bird1->setPos(shooting_item_x,shooting_item_y);
+    bird1->status = 1;
 
     mouse_start_x = event->scenePos().x();
     mouse_start_y = event->scenePos().y();
-    cout<< "x: " << mouse_start_x << " compare x Bound : "<< screenSize_x << " y: " << mouse_start_y << " compare y bound : "<< screenSize_y << endl;
+    //cout<< "x: " << mouse_start_x << " compare x Bound : "<< screenSize_x << " y: " << mouse_start_y << " compare y bound : "<< screenSize_y << endl;
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    //cout << "Moving x :" << event->scenePos().x() << endl;
-    //cout << "Moving y :" << event->scenePos().y() << endl;
-    //bird1->setPos(event->scenePos().x(),event->scenePos().y());
     /* FIXME : need function to select the shooting bird */
     qreal now_mouse_x = event->scenePos().x();
     qreal now_mouse_y = event->scenePos().y();
@@ -109,23 +107,16 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    //cout << "Release !" << endl;
-    //shooting_item_x = bird1->pos().x();
-    //shooting_item_y = bird1->pos().y();
-    /*
-    bucket_x = bucket->pos().x();
-    bucket_y = bucket->pos().y();
-    upper_line_start_x = bucket_x+10;//event->scenePos().x();
-    upper_line_start_y = bucket_y;//event->scenePos().y();
-    lower_line_start_x = bucket_x+10;
-    lower_line_start_y = bucket_y;
-    */
     bucket->setPos(bucket_x,bucket_y);
     upper_line->setLine(65,400,upper_line_start_x,upper_line_start_y);
     lower_line->setLine(100,400,lower_line_start_x,lower_line_start_y);
     /* Give bird a speed to fly , and set it's status to free object */
     bird1->status = 0;
-    bird1->speed_x = 20;
-    bird1->speed_y = -10;
+
+    bird1->speed_x = (shooting_item_x - bird1->pos().x())/20;
+    cout<< shooting_item_x << " ; " << bird1->pos().x() << endl;
+
+    cout<< bird1->speed_x << endl;
+    bird1->speed_y = -(bird1->pos().y() - shooting_item_y)/10;
 }
 

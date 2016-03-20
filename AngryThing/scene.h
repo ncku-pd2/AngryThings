@@ -6,6 +6,7 @@
 #include <iostream>
 #include <gameitem.h>
 #include <QTimer>
+#include <math.h>
 
 using namespace std;
 
