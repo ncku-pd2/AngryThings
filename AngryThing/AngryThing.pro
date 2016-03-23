@@ -15,10 +15,15 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     gameitem.cpp \
-    scene.cpp
+    scene.cpp \
+    pixmapitem.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
-    scene.h
+    scene.h \
+    pixmapitem.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    resource.qrc

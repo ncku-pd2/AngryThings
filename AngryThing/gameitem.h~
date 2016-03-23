@@ -8,9 +8,13 @@ class gameItem : public QGraphicsPixmapItem
 public:
     /* Constructor */
     gameItem(qreal size_x , qreal size_y);
+<<<<<<< HEAD
     /* Slot for timer(scene) */
+    void advance(int phase);
     /* Check boundary */
+=======
 	void advance(int);
+>>>>>>> a7c9c939c482eaaad8e4d8fc1b4c5a13dd476fa0
     void checkBoundary();
     /* Game scene size */
     qreal screenSize_x;

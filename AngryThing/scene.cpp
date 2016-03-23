@@ -8,28 +8,22 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
 
     QImage temp_img;
     /* Initialize the catapult */
-    cata_up_path = "../angrything_img_src/object/Catapult_upper.png";
-    temp_img.load(cata_up_path);
-    temp_img = temp_img.scaled(50,130,Qt::KeepAspectRatio);
-    catapult_upper = new gameItem(screenSize_x,screenSize_y);
-    catapult_upper->status = 1;
-    catapult_upper->setPixmap(QPixmap::fromImage(temp_img));
+	catapult_upper = new PixmapItem(
+		QPixmap(":/Catapult_upper.png").scaled(50,130,Qt::KeepAspectRatio),
+		QPointF(screenSize_x,screenSize_y),
+		QPointF(62,380),
+		10);
     addItem(catapult_upper);
-    catapult_upper->setPos(62,380);
-    catapult_upper->setZValue(10);
 
-    cata_lo_path = "../angrything_img_src/object/Catapult_lower.png";
-    temp_img.load(cata_lo_path);
-    temp_img = temp_img.scaled(90,150,Qt::KeepAspectRatio);
-    catapult_lower = new gameItem(screenSize_x,screenSize_y);
-    catapult_lower->status = 1;
-    catapult_lower->setPixmap(QPixmap::fromImage(temp_img));
+	catapult_lower = new PixmapItem(
+		QPixmap(":/Catapult_lower.png").scaled(90,150,Qt::KeepAspectRatio),
+		QPointF(screenSize_x,screenSize_y),
+		QPointF(60,370),
+		5);
     addItem(catapult_lower);
-    catapult_lower->setPos(60,370);
-    catapult_lower->setZValue(5);
 
     /* Initialize the bucket */
-    bucket_path = "../angrything_img_src/object/Bucket.png";
+	bucket_path = ":/Bucket.png";
     temp_img.load(bucket_path);
     temp_img = temp_img.scaled(30,30,Qt::KeepAspectRatio);
     bucket = new gameItem(screenSize_x,screenSize_y);
@@ -112,7 +106,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     lower_line->setLine(100,400,lower_line_start_x+dist_x/3,lower_line_start_y+dist_y/3);
 }
 
-void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
     bucket->setPos(bucket_x,bucket_y);
     upper_line->setLine(65,400,upper_line_start_x,upper_line_start_y);

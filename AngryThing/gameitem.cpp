@@ -6,7 +6,7 @@ using namespace std;
 gameItem::gameItem(qreal size_x, qreal size_y)
 {
     status = 0;
-    grav_accel = 0.05;
+	grav_accel = 0.2;
     x_accel = 0;
     y_accel = 0;
     speed_x = 0;
@@ -21,7 +21,7 @@ gameItem::gameItem(qreal size_x, qreal size_y)
     lowerBound = size_y-40;
 }
 
-void gameItem::advance(int phase)
+void gameItem::advance(int)
 {
     /*
     if(phase == 0)
@@ -36,7 +36,7 @@ void gameItem::advance(int phase)
     else if(status == 0){
         /* Calculate the physic status */
         speed_y += (0.1)*grav_accel;
-        x_accel = -0.01;
+		x_accel = -0.005;
 
         if(speed_x > 0)
             speed_x += x_accel;
