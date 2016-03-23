@@ -48,6 +48,16 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     shooting_item_y = 380;
     bird1->setPos(shooting_item_x,shooting_item_y);
 
+    /* Initialize the pig1 */
+    pig_path = "../angrything_img_src/object/KING_PIG_BOSS.png";
+    temp_img.load(pig_path);
+    temp_img = temp_img.scaled(65,65,Qt::KeepAspectRatio);
+    pig1 = new gameItem(screenSize_x , screenSize_y);
+    pig1->status = 2;
+    pig1->setPixmap(QPixmap::fromImage(temp_img));
+    pig1->setZValue(7);
+    addItem(pig1);
+    pig1->setPos(600,380);
     /* Setting the line */
     upper_line_start_x = 55;
     upper_line_start_y = 430;
@@ -91,14 +101,11 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     /* FIXME : need function to select the shooting bird */
     qreal now_mouse_x = event->scenePos().x();
     qreal now_mouse_y = event->scenePos().y();
-
     qreal dist_x = now_mouse_x - mouse_start_x;
     qreal dist_y = now_mouse_y - mouse_start_y;
-
     /* Adjust the Move : bird1 and  bucket (together)*/
     bird1->setPos(shooting_item_x+dist_x/3,shooting_item_y+dist_y/3);
     bucket->setPos(bucket_x+dist_x/3,bucket_y+dist_y/3);
-
     /* Adjust the line */
     upper_line->setLine(65,400,upper_line_start_x+dist_x/3,upper_line_start_y+dist_y/3);
     lower_line->setLine(100,400,lower_line_start_x+dist_x/3,lower_line_start_y+dist_y/3);
@@ -110,7 +117,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
     upper_line->setLine(65,400,upper_line_start_x,upper_line_start_y);
     lower_line->setLine(100,400,lower_line_start_x,lower_line_start_y);
     /* Give bird a speed to fly , and set it's status to free object */
-    bird1->status = 0;
+    bird1->status = 2;
 
     bird1->speed_x = (shooting_item_x - bird1->pos().x())/20;
     cout<< shooting_item_x << " ; " << bird1->pos().x() << endl;

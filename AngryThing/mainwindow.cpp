@@ -31,10 +31,6 @@ void MainWindow::settingBackground(int bgw,int bgh)
 
 void MainWindow::settingInitObj()
 {
-
-    //cout << bird1->zValue() << endl;
-    /* Initialize the bird2 */
-
     /* Debugging */
     /*QList<QGraphicsItem *> list = scene->collidingItems(catapult_upper);
     foreach (QGraphicsItem *i, list) {
