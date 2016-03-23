@@ -8,6 +8,8 @@
 #include <QTimer>
 #include <math.h>
 
+#include "pixmapitem.h"
+
 using namespace std;
 
 class Scene : public QGraphicsScene
@@ -39,16 +41,14 @@ public:
     QGraphicsLineItem *lower_line;
 
     /* BackGround */
-    gameItem *bg;
-    QString bg_path;
+	//gameItem *bg;
+	//QString bg_path;
     /* Game obj */
     gameItem *bird1;
     QString bird1_path;
     /* FIXME : need to change catapult class */
-    gameItem *catapult_upper;
-    QString cata_up_path;
+	PixmapItem *catapult_upper;
     gameItem *catapult_lower;
-    QString cata_lo_path;
     gameItem *bucket;
     QString bucket_path;
 
@@ -58,7 +58,8 @@ public:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent *);
+
 };
 
 #endif // SCENE_H
