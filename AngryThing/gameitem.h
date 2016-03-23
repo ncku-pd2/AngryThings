@@ -4,9 +4,10 @@
 
 class gameItem : public QGraphicsPixmapItem
 {
+
 public:
     gameItem(qreal size_x , qreal size_y);
-    void advance(int phase);
+	void advance(int);
     void checkBoundary();
     qreal upperBound;
     qreal lowerBound;
