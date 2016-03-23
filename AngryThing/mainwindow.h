@@ -29,7 +29,6 @@ public:
     Scene* scene;
     int screenWidth;
     int screenHeight;
-
 private:
     Ui::MainWindow *ui;
 };

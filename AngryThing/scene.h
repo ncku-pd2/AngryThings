@@ -12,10 +12,10 @@ using namespace std;
 
 class Scene : public QGraphicsScene
 {
+    //Q_OBJECT
 public:
     Scene(qreal screenS_x, qreal screenS_y ,QObject* parent = 0);
-    void repaint();
-    /* Location data */
+    /* Object Location data */
     qreal shooting_item_x;
     qreal shooting_item_y;
     qreal bucket_x;
@@ -37,7 +37,6 @@ public:
     /* Line Item */
     QGraphicsLineItem *upper_line;
     QGraphicsLineItem *lower_line;
-
     /* BackGround */
     gameItem *bg;
     QString bg_path;
@@ -51,6 +50,10 @@ public:
     QString cata_lo_path;
     gameItem *bucket;
     QString bucket_path;
+
+    /* Obstacle */
+    gameItem *pig1;
+    QString pig_path;
 
     /* QTimer */
     QTimer *timer;

@@ -5,9 +5,16 @@
 class gameItem : public QGraphicsPixmapItem
 {
 public:
+    /* Constructor */
     gameItem(qreal size_x , qreal size_y);
+    /* Slot for timer(scene) */
     void advance(int phase);
+    /* Check boundary */
     void checkBoundary();
+    /* Game scene size */
+    qreal screenSize_x;
+    qreal screenSize_y;
+    /* Game scene Boundary */
     qreal upperBound;
     qreal lowerBound;
     qreal leftBound;
@@ -15,15 +22,9 @@ public:
     /* Physical variable */
     qreal speed_x;
     qreal speed_y;
-
-    qreal grav_accel;
-    qreal x_accel;
-    qreal y_accel;
-
-    qreal screenSize_x;
-    qreal screenSize_y;
-
-    /* Define the object status => FIXME : using polymorphism */
+    qreal grav_accel; // Gravity
+    qreal x_accel; // x-axis acceleration
+    qreal y_accel; // y-axis acceleration
     /* 0 for movable object , 1 for static object */
     int status;
 };

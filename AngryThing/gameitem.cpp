@@ -45,8 +45,19 @@ void gameItem::advance(int phase)
 
         this->setPos(this->pos().x()+speed_x,this->pos().y()+speed_y);
     }
-    //cout<< this->pos().x() << " ; " << this->pos().y() << endl;
-    //cout<< "speed is "<< this->speed_y << endl;
+    else if(status == 2){
+        // For Collision Item
+        speed_y += (0.1)*grav_accel;
+        x_accel = -0.01;
+
+        if(speed_x > 0)
+            speed_x += x_accel;
+        else if(speed_x < 0)
+            speed_x -= x_accel;
+
+        this->setPos(this->pos().x()+speed_x,this->pos().y()+speed_y);
+    }
+
     checkBoundary();
 }
 
@@ -119,4 +130,6 @@ void gameItem::checkBoundary()
 
 
 }
+
+
 
