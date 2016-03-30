@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     int screenHeight = wid.screen()->height();
     int width = screenWidth - 300;
     int height = screenHeight - 150;
-    MainWindow w;
+    MainWindow w(width , height);
     // ================= Setting Windows Title and Icon =================
     w.setWindowTitle("AngryThings");
     w.setWindowIcon(QIcon("../angrything_img_src/object/Normal_Bird_1.png"));
