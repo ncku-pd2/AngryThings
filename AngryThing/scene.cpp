@@ -5,7 +5,6 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     /* Initial the boundary */
     screenSize_x = screenS_x;
     screenSize_y = screenS_y;
-
     QImage temp_img;
     /* Initialize the catapult */
 	catapult_upper = new PixmapItem(
@@ -27,7 +26,7 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     temp_img.load(bucket_path);
     temp_img = temp_img.scaled(30,30,Qt::KeepAspectRatio);
     bucket = new gameItem(screenSize_x,screenSize_y);
-    bucket->status = 1;
+	//bucket->status = 1;
     bucket->setPixmap(QPixmap::fromImage(temp_img));
     addItem(bucket);
     bucket_x = 40;
@@ -39,8 +38,8 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     bird1_path = "../angrything_img_src/object/Normal_Bird_1.png";
     temp_img.load(bird1_path);
     temp_img = temp_img.scaled(50,50,Qt::KeepAspectRatio);
-    bird1 = new gameItem(screenSize_x,screenSize_y);
-    bird1->status = 1;
+	bird1 = new bird(screenSize_x,screenSize_y);
+	//bird1->status = 0;
     bird1->setPixmap(QPixmap::fromImage(temp_img));
     bird1->setZValue(7);
     addItem(bird1);
@@ -53,11 +52,12 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     temp_img.load(pig_path);
     temp_img = temp_img.scaled(65,65,Qt::KeepAspectRatio);
     pig1 = new gameItem(screenSize_x , screenSize_y);
-    pig1->status = 2;
+	//pig1->status = 2;
     pig1->setPixmap(QPixmap::fromImage(temp_img));
     pig1->setZValue(7);
     addItem(pig1);
     pig1->setPos(600,380);
+
     /* Setting the line */
     upper_line_start_x = 55;
     upper_line_start_y = 430;
@@ -89,7 +89,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     /* For debugging  */
     bird1->setPos(shooting_item_x,shooting_item_y);
-    bird1->status = 1;
+	//bird1->status = 1;
 
     mouse_start_x = event->scenePos().x();
     mouse_start_y = event->scenePos().y();
@@ -117,7 +117,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
     upper_line->setLine(65,400,upper_line_start_x,upper_line_start_y);
     lower_line->setLine(100,400,lower_line_start_x,lower_line_start_y);
     /* Give bird a speed to fly , and set it's status to free object */
-    bird1->status = 2;
+	bird1->allowPhysic = true;
 
     bird1->speed_x = (shooting_item_x - bird1->pos().x())/20;
     cout<< shooting_item_x << " ; " << bird1->pos().x() << endl;

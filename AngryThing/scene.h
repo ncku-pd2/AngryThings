@@ -9,6 +9,7 @@
 #include <math.h>
 
 #include "pixmapitem.h"
+#include "bird.h"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ public:
 	//gameItem *bg;
 	//QString bg_path;
     /* Game obj */
-    gameItem *bird1;
+	bird *bird1;
     QString bird1_path;
     /* FIXME : need to change catapult class */
 	PixmapItem *catapult_upper;
