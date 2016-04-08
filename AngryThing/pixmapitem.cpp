@@ -4,7 +4,7 @@ PixmapItem::PixmapItem(QPixmap pixmap, QPointF screenSize, QPointF location, qre
 	gameItem(screenSize.x(),screenSize.y()),
 	location(location)
 {
-	status = 1;
+	//status = 1;
 	setPixmap(pixmap);
 	setPos(location);
 	setZValue(zValue);

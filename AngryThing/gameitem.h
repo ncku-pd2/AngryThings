@@ -7,27 +7,26 @@ class gameItem : public QGraphicsPixmapItem
 
 public:
     /* Constructor */
-    gameItem(qreal size_x , qreal size_y);
-    /* Slot for timer(scene) */
+	gameItem(qreal size_x , qreal size_y);
     /* Check boundary */
-	void advance(int);
-    void checkBoundary();
-    /* Game scene size */
+	virtual void advance(int);
+	virtual bool checkBoundary();
+	/* Game scene size
     qreal screenSize_x;
     qreal screenSize_y;
-    /* Game scene Boundary */
+	/* Game scene Boundary*/
     qreal upperBound;
     qreal lowerBound;
     qreal leftBound;
     qreal rightBound;
-    /* Physical variable */
+	/* Physical variable
     qreal speed_x;
     qreal speed_y;
     qreal grav_accel; // Gravity
     qreal x_accel; // x-axis acceleration
     qreal y_accel; // y-axis acceleration
     /* 0 for movable object , 1 for static object */
-    int status;
+	//int status;
 };
 
 #endif // GAMEITEM_H
