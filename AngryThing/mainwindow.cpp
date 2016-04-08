@@ -7,11 +7,9 @@ MainWindow::MainWindow(int width, int height,QWidget *parent) :
 {
     ui->setupUi(this);
 	setFixedSize(width,height);
-    screenWidth = width;
-    screenHeight = height;
     // setting the scene size
-	scene = new Scene(screenWidth , scre    // Program LoopenHeight ,parent);
-    scene->setSceneRect(10,25,screenWidth,screenHeight);
+	scene = new Scene(width , width ,parent);
+	scene->setSceneRect(10,25,width,height);
     // Put scene in graphicsView
     ui->graphicsView->setScene(scene);
     ui->graphicsView->show();

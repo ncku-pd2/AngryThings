@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     gameitem.cpp \
     scene.cpp \
-    pixmapitem.cpp
+    pixmapitem.cpp \
+    bird.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
     scene.h \
-    pixmapitem.h
+    pixmapitem.h \
+    bird.h
 
 FORMS    += mainwindow.ui
 
