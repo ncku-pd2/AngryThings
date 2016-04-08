@@ -14,7 +14,7 @@ using namespace std;
 
 class Scene : public QGraphicsScene
 {
-    //Q_OBJECT
+	Q_OBJECT
 public:
     Scene(qreal screenS_x, qreal screenS_y ,QObject* parent = 0);
     /* Object Location data */
@@ -57,6 +57,9 @@ public:
 
     /* QTimer */
     QTimer *timer;
+
+public slots:
+	void collition();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

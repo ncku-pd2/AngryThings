@@ -77,9 +77,14 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
 
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
-    timer->start(10);
+	connect(timer,SIGNAL(timeout()),this,SLOT(collition()));
+	timer->start(10);
 }
 
+void Scene::collition()
+{
+
+}
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     /* For debugging  */
