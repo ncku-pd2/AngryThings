@@ -11,9 +11,9 @@ public:
     /* Check boundary */
 	virtual void advance(int);
 	virtual bool checkBoundary();
-	/* Game scene size
+    /* Game scene size
     qreal screenSize_x;
-    qreal screenSize_y;
+    qreal screenSize_y; */
 	/* Game scene Boundary*/
     qreal upperBound;
     qreal lowerBound;
@@ -24,9 +24,9 @@ public:
     qreal speed_y;
     qreal grav_accel; // Gravity
     qreal x_accel; // x-axis acceleration
-    qreal y_accel; // y-axis acceleration
+    qreal y_accel; // y-axis acceleration*/
     /* 0 for movable object , 1 for static object */
-	//int status;
+    int status;
 };
 
 #endif // GAMEITEM_H

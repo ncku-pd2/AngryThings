@@ -48,15 +48,7 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     bird1->setPos(shooting_item_x,shooting_item_y);
 
     /* Initialize the pig1 */
-    pig_path = "../angrything_img_src/object/KING_PIG_BOSS.png";
-    temp_img.load(pig_path);
-    temp_img = temp_img.scaled(65,65,Qt::KeepAspectRatio);
-    pig1 = new gameItem(screenSize_x , screenSize_y);
-	//pig1->status = 2;
-    pig1->setPixmap(QPixmap::fromImage(temp_img));
-    pig1->setZValue(7);
-    addItem(pig1);
-    pig1->setPos(600,380);
+    createEnemy(6);
 
     /* Setting the line */
     upper_line_start_x = 55;
@@ -78,22 +70,72 @@ Scene::Scene(qreal screenS_x, qreal screenS_y , QObject *parent): QGraphicsScene
     timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
 	connect(timer,SIGNAL(timeout()),this,SLOT(collition()));
-	timer->start(10);
+    timer->start(10);
+}
+
+void Scene::createEnemy(int num)
+{
+    QImage temp_img;
+    pig_path = "../angrything_img_src/object/KING_PIG_BOSS.png";
+    temp_img.load(pig_path);
+    temp_img = temp_img.scaled(65,65,Qt::KeepAspectRatio);
+
+    for(int i = 0 ; i < num ; i++)
+    {
+        Enemy *pig1;
+        pig1 = new Enemy(screenSize_x , screenSize_y , 65,65);
+        pig1->setPixmap(QPixmap::fromImage(temp_img));
+        pig1->setZValue(7);
+        enemyList.push_front(pig1);
+        addItem(pig1);
+
+        // random throws them into scene in the range we define
+        randomGenerateLocation(pig1 , screenSize_y/2 , screenSize_y, 600 , screenSize_x);
+    }
+
+}
+
+void Scene::randomGenerateLocation(Enemy *item, int up, int down, int left, int right)
+{
+    int x , y;
+    while(1)
+    {
+        x = rand()%right;
+        if(x - left > 0)
+        {
+            break;
+        }
+    }
+    while(1)
+    {
+        y = rand()%down;
+        if(y - up > 0)
+        {
+            break;
+        }
+    }
+    item->setPos(x,y);
 }
 
 void Scene::collition()
 {
-
+    // Do enemy's initial collision
 }
 void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    /* For debugging  */
+    // Reset the status of bird
+    bird1->speed_x = 0;
+    bird1->speed_y = 0;
+    bird1->x_accel = 0;
+    bird1->y_accel = 0;
+    // Reset the location
     bird1->setPos(shooting_item_x,shooting_item_y);
-	//bird1->status = 1;
+    // Reset the status
+    bird1->allowPhysic = false;
 
+    // change the position
     mouse_start_x = event->scenePos().x();
     mouse_start_y = event->scenePos().y();
-    //cout<< "x: " << mouse_start_x << " compare x Bound : "<< screenSize_x << " y: " << mouse_start_y << " compare y bound : "<< screenSize_y << endl;
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

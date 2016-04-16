@@ -10,6 +10,7 @@
 
 #include "pixmapitem.h"
 #include "bird.h"
+#include "enemy.h"
 
 using namespace std;
 
@@ -18,6 +19,8 @@ class Scene : public QGraphicsScene
 	Q_OBJECT
 public:
     Scene(qreal screenS_x, qreal screenS_y ,QObject* parent = 0);
+    void createEnemy(int num);
+    void randomGenerateLocation(Enemy *item, int up ,int down ,int left , int right);
     /* Object Location data */
     qreal shooting_item_x;
     qreal shooting_item_y;
@@ -53,7 +56,7 @@ public:
     QString bucket_path;
 
     /* Obstacle */
-    gameItem *pig1;
+    QList<Enemy *> enemyList;
     QString pig_path;
 
     /* QTimer */

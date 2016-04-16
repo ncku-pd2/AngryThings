@@ -8,6 +8,9 @@ bird::bird(qreal size_x, qreal size_y) : gameItem(size_x,size_y)
 	speed_x = 0;
 	speed_y = 0;
 	allowPhysic = false;
+
+    // define status
+    status = 1;
 }
 
 void bird::advance(int)

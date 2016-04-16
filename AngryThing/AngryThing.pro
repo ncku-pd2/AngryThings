@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     gameitem.cpp \
     scene.cpp \
     pixmapitem.cpp \
-    bird.cpp
+    bird.cpp \
+    enemy.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
     scene.h \
     pixmapitem.h \
-    bird.h
+    bird.h \
+    enemy.h
 
 FORMS    += mainwindow.ui
 

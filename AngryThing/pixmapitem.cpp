@@ -4,7 +4,8 @@ PixmapItem::PixmapItem(QPixmap pixmap, QPointF screenSize, QPointF location, qre
 	gameItem(screenSize.x(),screenSize.y()),
 	location(location)
 {
-	//status = 1;
+    // For an ignore collision item
+    status = 0;
 	setPixmap(pixmap);
 	setPos(location);
 	setZValue(zValue);

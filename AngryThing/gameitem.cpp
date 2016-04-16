@@ -5,8 +5,9 @@ using namespace std;
 
 gameItem::gameItem(qreal size_x, qreal size_y)
 {
-	/*status = 0;
-	grav_accel = 0.2;
+    status = 0;
+    /*
+    grav_accel = 0.2;
     x_accel = 0;
     y_accel = 0;
     speed_x = 0;
@@ -31,10 +32,10 @@ void gameItem::advance(int)
 
 	if(status == 1)
 	{
-		/* Don't need to consider physic
+        // Don't need to consider physic
 	}
 	else if(status == 0){
-		/* Calculate the physic status
+        // Calculate the physic status
 		speed_y += (0.1)*grav_accel;
 		x_accel = -0.005;
 
@@ -67,8 +68,8 @@ bool gameItem::checkBoundary()
 	/*qreal obj_x = this->pos().x();
 	qreal obj_y = this->pos().y();
 
-	/* upper */
-	/*if(obj_y <= upperBound)
+    /* //upper
+    if(obj_y <= upperBound)
 	{
 		if(obj_x <= leftBound)
 		{
@@ -130,6 +131,7 @@ bool gameItem::checkBoundary()
 		}
 	}
 	*/
+    return true;
 }
 
 
