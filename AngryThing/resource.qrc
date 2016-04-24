@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="Bucket.png">image/Bucket.png</file>
-        <file alias="Catapult_lower.png">image/Catapult_lower.png</file>
-        <file alias="Catapult_upper.png">image/Catapult_upper.png</file>
-        <file>image/Normal_Bird_1.png</file>
-    </qresource>
-</RCC>
