@@ -9,7 +9,7 @@ Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Worl
 
     // Create Body
     b2BodyDef bodydef;
-    bodydef.type = b2_dynamicBody;
+    bodydef.type = b2_staticBody;
     bodydef.bullet = true;
     bodydef.position.Set(x,y);
     bodydef.userData = this;
@@ -24,10 +24,36 @@ Bird::Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2Worl
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
 
+    x_pos = x;
+    y_pos = y;
+    r = radius;
+    w = world;
+
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
     scene->addItem(&g_pixmap);
+}
+
+void Bird::startShoot()
+{
+    // Create Body
+    b2BodyDef bodydef;
+    bodydef.type = b2_dynamicBody;
+    bodydef.bullet = true;
+    bodydef.position.Set(x_pos,y_pos);
+    bodydef.userData = this;
+    g_body = w->CreateBody(&bodydef);
+    b2CircleShape bodyshape;
+    bodyshape.m_radius = r;
+    b2FixtureDef fixturedef;
+    fixturedef.shape = &bodyshape;
+    fixturedef.density = BIRD_DENSITY;
+    fixturedef.friction = BIRD_FRICTION;
+    fixturedef.restitution = BIRD_RESTITUTION;
+    g_body->SetAngularDamping(3);
+    g_body->CreateFixture(&fixturedef);
+
 }
 
 void Bird::setLinearVelocity(b2Vec2 velocity)

@@ -14,16 +14,18 @@ public:
     GameItem(b2World *world);
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
-
+    b2World *g_world;
+    b2Body *g_body;
+    QGraphicsPixmapItem g_pixmap;
 public slots:
     void paint();
     // TODO virtual void collide();
 
 protected:
-    b2Body *g_body;
-    QGraphicsPixmapItem g_pixmap;
+    //b2Body *g_body;
+    //b2World *g_world;
+    //QGraphicsPixmapItem g_pixmap;
     QSizeF g_size;
-    b2World *g_world;
     static QSizeF g_worldsize, g_windowsize;
 };
 

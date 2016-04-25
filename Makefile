@@ -772,6 +772,9 @@ moc_mainwindow.cpp: ../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		Box2D/Dynamics/Joints/b2RopeJoint.h \
 		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
@@ -1095,6 +1098,9 @@ main.o: main.cpp mainwindow.h \
 		Box2D/Dynamics/Joints/b2RopeJoint.h \
 		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
@@ -1267,6 +1273,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		Box2D/Dynamics/Joints/b2RopeJoint.h \
 		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
