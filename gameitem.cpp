@@ -24,11 +24,21 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 void GameItem::paint()
 {
     b2Vec2 pos = g_body->GetPosition();
-    //std::cout << g_body->GetAngle() << std::endl;
     QPointF mappedPoint;
     mappedPoint.setX(((pos.x-g_size.width()/2) * g_windowsize.width())/g_worldsize.width());
-    mappedPoint.setY((1.0f - (pos.y+g_size.height()/2)/g_worldsize.height()) * g_windowsize.height());
+    mappedPoint.setY((1.0f - (pos.y-g_size.height()/2)/g_worldsize.height()) * g_windowsize.height());
     g_pixmap.setPos(mappedPoint);
     g_pixmap.resetTransform();
-    g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
+    g_pixmap.setRotation(-(g_body->GetAngle()*90/3.14159));
 }
+
+QPointF GameItem::posb2Toqt(float x, float y)
+{
+    return QPointF(x*g_windowsize.width()/g_worldsize.width(), (1.0f - y/g_worldsize.height()) * g_windowsize.height());
+}
+
+b2Vec2 GameItem::posqtTob2(float x, float y)
+{
+    return b2Vec2(x*g_worldsize.width()/g_windowsize.width(), (1.0f - y/g_windowsize.height()) * g_worldsize.height());
+}
+

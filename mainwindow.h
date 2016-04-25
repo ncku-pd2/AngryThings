@@ -29,18 +29,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void showEvent(QShowEvent *);
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *, QEvent *event);
     // For statics objects
     void setCatapult();
     QGraphicsPixmapItem *bucket;
     QGraphicsLineItem *line1;
     QGraphicsLineItem *line2;
-    int line_end_x;
-    int line_end_y;
-    float bird_start_x;
-    float bird_start_y;
-    int mouse_start_x;
-    int mouse_start_y;
+    QPoint mouse_start, bird_start, line_end;
 private slots:
     void tick();
 

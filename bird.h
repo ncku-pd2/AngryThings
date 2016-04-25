@@ -7,8 +7,8 @@
 #include <QTimer>
 
 #define BIRD_DENSITY 10.0f
-#define BIRD_FRICTION 0.3f
-#define BIRD_RESTITUTION 0.5f
+#define BIRD_FRICTION 0.7f
+#define BIRD_RESTITUTION 0.3f
 
 class Bird : public GameItem
 {
@@ -18,8 +18,9 @@ public:
     void setLinearVelocity(b2Vec2 velocity);
     float x_pos;
     float y_pos;
-    float r;
-    b2World *w;
+    float radius;
+    b2World *world;
+    QTimer *timer;
 };
 
 #endif // BIRD_H
