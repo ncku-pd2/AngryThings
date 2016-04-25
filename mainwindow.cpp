@@ -16,6 +16,12 @@ MainWindow::~MainWindow()
 void MainWindow::showEvent(QShowEvent *)
 {
     scene = new QGraphicsScene(0,0,width(),ui->graphicsView->height());
+    // Set the scene's bg
+    QImage bg;
+    bg.load(":/sky_complete.png");
+    // To show the grass , we need to -30
+    bg = bg.scaled(width(),ui->graphicsView->height()-30,Qt::KeepAspectRatio);
+    scene->setBackgroundBrush(bg);
     ui->graphicsView->setScene(scene);
     // Create world
     world = new b2World(b2Vec2(0.0f, -9.8f));

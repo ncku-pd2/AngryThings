@@ -2,5 +2,22 @@
     <qresource prefix="/">
         <file alias="ground.png">image/GROUND.png</file>
         <file alias="bird.png">image/Normal_Bird_1.png</file>
+        <file alias="bucket.png">image/Bucket.png</file>
+        <file alias="cata_lower.png">image/Catapult_lower.png</file>
+        <file alias="cata_upper.png">image/Catapult_upper.png</file>
+        <file alias="grass.png">image/Grass.png</file>
+        <file alias="king_pig.png">image/KING_PIG_BOSS.png</file>
+        <file alias="push_btn.png">image/Pause_Button.png</file>
+        <file alias="sky_src.png">image/Sky.png</file>
+        <file alias="sky_complete.png">image/Sky_1.png</file>
+        <file alias="open.png">image/SPLASHES_SHEET_1.png</file>
+        <file alias="tile.png">image/TILE.png</file>
+        <file alias="tree.png">image/Tree.png</file>
+    </qresource>
+    <qresource prefix="/sound">
+        <file>sound/jewel collision a2.wav</file>
+        <file>sound/main theme.mp3</file>
+        <file>sound/rock collision a2.wav</file>
+        <file>sound/wood collision a5.wav</file>
     </qresource>
 </RCC>
