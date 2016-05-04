@@ -4,7 +4,8 @@ Land::Land(float x, float y, float w, float h, QPixmap pixmap, b2World *world, Q
 {
     // Set pixmap
     g_pixmap.setPixmap(pixmap);
-    g_pixmap.setPos(0,g_windowsize.height()-g_pixmap.boundingRect().height());
+    g_pixmap.setTransformOriginPoint(g_pixmap.boundingRect().width()/2,g_pixmap.boundingRect().height()/2);
+    g_size = QSize(w,h);
     scene->addItem(&g_pixmap);
 
     // Create body
@@ -13,9 +14,10 @@ Land::Land(float x, float y, float w, float h, QPixmap pixmap, b2World *world, Q
     bodyDef.position.Set(x,y);
     g_body = world->CreateBody(&bodyDef);
     b2PolygonShape bodyBox;
-    bodyBox.SetAsBox(w,h);
+    bodyBox.SetAsBox(w/2,h/2);
     b2FixtureDef fixtureDef;
     fixtureDef.friction = 0.8f;
     fixtureDef.shape = &bodyBox;
-    g_body->CreateFixture(&fixtureDef);   
+    g_body->CreateFixture(&fixtureDef);
+    paint();
 }

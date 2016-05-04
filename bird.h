@@ -16,6 +16,7 @@ public:
     Bird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void startShoot();
     void setLinearVelocity(b2Vec2 velocity);
+    void paint();
     float x_pos;
     float y_pos;
     float radius;

@@ -13,6 +13,7 @@
         <file alias="open.png">image/SPLASHES_SHEET_1.png</file>
         <file alias="tile.png">image/TILE.png</file>
         <file alias="tree.png">image/Tree.png</file>
+        <file alias="block.png">image/INGAME_BLOCKS_1.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>sound/jewel collision a2.wav</file>

@@ -14,13 +14,13 @@ public:
     GameItem(b2World *world);
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
-    b2World *g_world;
     b2Body *g_body;
+    b2World *g_world;
     QGraphicsPixmapItem g_pixmap;
 
 public slots:
-    void paint();
-    // TODO virtual void collide();
+    virtual void paint();
+    // virtual void collide();
 
     static QPointF posb2Toqt(float x, float y);
     static b2Vec2 posqtTob2(float x, float y);

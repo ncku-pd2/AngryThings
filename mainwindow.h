@@ -14,6 +14,7 @@
 #include <gameitem.h>
 #include <land.h>
 #include <bird.h>
+#include <barrier.h>
 
 using namespace std;
 
@@ -30,12 +31,14 @@ public:
     ~MainWindow();
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *, QEvent *event);
+
     // For statics objects
     void setCatapult();
     QGraphicsPixmapItem *bucket;
     QGraphicsLineItem *line1;
     QGraphicsLineItem *line2;
     QPoint mouse_start, bird_start, line_end;
+
 private slots:
     void tick();
 

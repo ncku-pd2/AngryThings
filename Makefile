@@ -52,7 +52,8 @@ SOURCES       = main.cpp \
 		mainwindow.cpp \
 		gameitem.cpp \
 		bird.cpp \
-		land.cpp qrc_res.cpp \
+		land.cpp \
+		barrier.cpp qrc_res.cpp \
 		moc_mainwindow.cpp \
 		moc_gameitem.cpp
 OBJECTS       = main.o \
@@ -60,6 +61,7 @@ OBJECTS       = main.o \
 		gameitem.o \
 		bird.o \
 		land.o \
+		barrier.o \
 		qrc_res.o \
 		moc_mainwindow.o \
 		moc_gameitem.o
@@ -247,11 +249,13 @@ DIST          = /opt/Qt5.6.0/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		Box2D/Box2D.h \
 		gameitem.h \
 		bird.h \
-		land.h main.cpp \
+		land.h \
+		barrier.h main.cpp \
 		mainwindow.cpp \
 		gameitem.cpp \
 		bird.cpp \
-		land.cpp
+		land.cpp \
+		barrier.cpp
 QMAKE_TARGET  = AngryThing
 DESTDIR       = 
 TARGET        = AngryThing
@@ -557,8 +561,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents res.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h Box2D/Collision/Shapes/b2ChainShape.h Box2D/Collision/Shapes/b2CircleShape.h Box2D/Collision/Shapes/b2EdgeShape.h Box2D/Collision/Shapes/b2PolygonShape.h Box2D/Collision/Shapes/b2Shape.h Box2D/Collision/b2BroadPhase.h Box2D/Collision/b2Collision.h Box2D/Collision/b2Distance.h Box2D/Collision/b2DynamicTree.h Box2D/Collision/b2TimeOfImpact.h Box2D/Common/b2BlockAllocator.h Box2D/Common/b2Draw.h Box2D/Common/b2GrowableStack.h Box2D/Common/b2Math.h Box2D/Common/b2Settings.h Box2D/Common/b2StackAllocator.h Box2D/Common/b2Timer.h Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h Box2D/Dynamics/Contacts/b2CircleContact.h Box2D/Dynamics/Contacts/b2Contact.h Box2D/Dynamics/Contacts/b2ContactSolver.h Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h Box2D/Dynamics/Contacts/b2PolygonContact.h Box2D/Dynamics/Joints/b2DistanceJoint.h Box2D/Dynamics/Joints/b2FrictionJoint.h Box2D/Dynamics/Joints/b2GearJoint.h Box2D/Dynamics/Joints/b2Joint.h Box2D/Dynamics/Joints/b2MotorJoint.h Box2D/Dynamics/Joints/b2MouseJoint.h Box2D/Dynamics/Joints/b2PrismaticJoint.h Box2D/Dynamics/Joints/b2PulleyJoint.h Box2D/Dynamics/Joints/b2RevoluteJoint.h Box2D/Dynamics/Joints/b2RopeJoint.h Box2D/Dynamics/Joints/b2WeldJoint.h Box2D/Dynamics/Joints/b2WheelJoint.h Box2D/Dynamics/b2Body.h Box2D/Dynamics/b2ContactManager.h Box2D/Dynamics/b2Fixture.h Box2D/Dynamics/b2Island.h Box2D/Dynamics/b2TimeStep.h Box2D/Dynamics/b2World.h Box2D/Dynamics/b2WorldCallbacks.h Box2D/Rope/b2Rope.h Box2D/Box2D.h gameitem.h bird.h land.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp bird.cpp land.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h Box2D/Collision/Shapes/b2ChainShape.h Box2D/Collision/Shapes/b2CircleShape.h Box2D/Collision/Shapes/b2EdgeShape.h Box2D/Collision/Shapes/b2PolygonShape.h Box2D/Collision/Shapes/b2Shape.h Box2D/Collision/b2BroadPhase.h Box2D/Collision/b2Collision.h Box2D/Collision/b2Distance.h Box2D/Collision/b2DynamicTree.h Box2D/Collision/b2TimeOfImpact.h Box2D/Common/b2BlockAllocator.h Box2D/Common/b2Draw.h Box2D/Common/b2GrowableStack.h Box2D/Common/b2Math.h Box2D/Common/b2Settings.h Box2D/Common/b2StackAllocator.h Box2D/Common/b2Timer.h Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h Box2D/Dynamics/Contacts/b2CircleContact.h Box2D/Dynamics/Contacts/b2Contact.h Box2D/Dynamics/Contacts/b2ContactSolver.h Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h Box2D/Dynamics/Contacts/b2PolygonContact.h Box2D/Dynamics/Joints/b2DistanceJoint.h Box2D/Dynamics/Joints/b2FrictionJoint.h Box2D/Dynamics/Joints/b2GearJoint.h Box2D/Dynamics/Joints/b2Joint.h Box2D/Dynamics/Joints/b2MotorJoint.h Box2D/Dynamics/Joints/b2MouseJoint.h Box2D/Dynamics/Joints/b2PrismaticJoint.h Box2D/Dynamics/Joints/b2PulleyJoint.h Box2D/Dynamics/Joints/b2RevoluteJoint.h Box2D/Dynamics/Joints/b2RopeJoint.h Box2D/Dynamics/Joints/b2WeldJoint.h Box2D/Dynamics/Joints/b2WheelJoint.h Box2D/Dynamics/b2Body.h Box2D/Dynamics/b2ContactManager.h Box2D/Dynamics/b2Fixture.h Box2D/Dynamics/b2Island.h Box2D/Dynamics/b2TimeStep.h Box2D/Dynamics/b2World.h Box2D/Dynamics/b2WorldCallbacks.h Box2D/Rope/b2Rope.h Box2D/Box2D.h gameitem.h bird.h land.h barrier.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp bird.cpp land.cpp barrier.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 
 
@@ -585,6 +589,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_res.cpp
 qrc_res.cpp: res.qrc \
 		image/Bucket.png \
+		image/INGAME_BLOCKS_1.png \
 		image/GROUND.png \
 		image/KING_PIG_BOSS.png \
 		image/Pause_Button.png \
@@ -770,6 +775,7 @@ moc_mainwindow.cpp: /opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		land.h \
 		bird.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/QPixmap \
+		barrier.h \
 		mainwindow.h
 	/opt/Qt5.6.0/5.6/gcc_64/bin/moc $(DEFINES) -I/opt/Qt5.6.0/5.6/gcc_64/mkspecs/linux-g++ -I/home/luishsu/workspace/AngryThing -I/opt/Qt5.6.0/5.6/gcc_64/include -I/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets -I/opt/Qt5.6.0/5.6/gcc_64/include/QtGui -I/opt/Qt5.6.0/5.6/gcc_64/include/QtCore mainwindow.h -o moc_mainwindow.cpp
 
@@ -1100,6 +1106,7 @@ main.o: main.cpp mainwindow.h \
 		land.h \
 		bird.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/QPixmap \
+		barrier.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1277,45 +1284,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		land.h \
 		bird.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/QPixmap \
-		ui_mainwindow.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/QVariant \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QAction \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qaction.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qactiongroup.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QApplication \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qapplication.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreapplication.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qeventloop.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qguiapplication.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qinputmethod.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QButtonGroup \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qbuttongroup.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsView \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsview.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qscrollarea.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractscrollarea.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qframe.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHBoxLayout \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qboxlayout.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlayout.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qlayoutitem.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgridlayout.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QHeaderView \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qheaderview.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemview.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyleoption.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractspinbox.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qvalidator.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qregularexpression.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qslider.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qabstractslider.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qstyle.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qtabbar.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qrubberband.h \
-		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QWidget
+		barrier.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 gameitem.o: gameitem.cpp gameitem.h \
@@ -1747,6 +1717,149 @@ land.o: land.cpp land.h \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
 		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o land.o land.cpp
+
+barrier.o: barrier.cpp barrier.h \
+		gameitem.h \
+		Box2D/Box2D.h \
+		Box2D/Common/b2Settings.h \
+		Box2D/Common/b2Draw.h \
+		Box2D/Common/b2Math.h \
+		Box2D/Common/b2Timer.h \
+		Box2D/Collision/Shapes/b2CircleShape.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Collision/b2Collision.h \
+		Box2D/Collision/Shapes/b2EdgeShape.h \
+		Box2D/Collision/Shapes/b2ChainShape.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Collision/b2Distance.h \
+		Box2D/Collision/b2TimeOfImpact.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Dynamics/b2Fixture.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Dynamics/Contacts/b2Contact.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		Box2D/Dynamics/Joints/b2GearJoint.h \
+		Box2D/Dynamics/Joints/b2MotorJoint.h \
+		Box2D/Dynamics/Joints/b2MouseJoint.h \
+		Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		Box2D/Dynamics/Joints/b2RopeJoint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
+		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobal.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qconfig.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qfeatures.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qsystemdetection.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qprocessordetection.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcompilerdetection.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qtypeinfo.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qtypetraits.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qisenum.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qsysinfo.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qlogging.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qflags.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qbasicatomic.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qgenericatomic.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_gcc.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_msvc.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv7.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv6.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_armv5.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_ia64.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_x86.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qatomic_unix.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qglobalstatic.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qmutex.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qnumeric.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qnamespace.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qstring.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qchar.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearray.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qrefcount.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qarraydata.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringbuilder.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qlist.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qalgorithms.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qiterator.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qhashfunctions.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qpair.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qbytearraylist.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringlist.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qregexp.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qstringmatcher.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcoreevent.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qscopedpointer.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qmetatype.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qvariant.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qmap.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qdebug.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qhash.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qtextstream.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qiodevice.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qlocale.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qshareddata.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qvector.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qpoint.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qset.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qrect.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qmargins.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qsize.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainterpath.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qmatrix.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpolygon.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qregion.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qdatastream.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qline.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixmap.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qcolor.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgb.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qrgba64.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qimage.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qtransform.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/QPainter \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpainter.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qtextoption.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qpen.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qbrush.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontinfo.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qfont.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/qfontmetrics.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtGui/QTransform \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/QtMath \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtCore/qmath.h \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
+		/opt/Qt5.6.0/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o barrier.o barrier.cpp
 
 qrc_res.o: qrc_res.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_res.o qrc_res.cpp
