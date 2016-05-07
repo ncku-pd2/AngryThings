@@ -15,6 +15,8 @@
 #include <land.h>
 #include <bird.h>
 #include <barrier.h>
+#include <mycontactlistener.h>
+#include <myscoreshow.h>
 
 using namespace std;
 
@@ -40,6 +42,7 @@ public:
     QPoint mouse_start, bird_start, line_end;
 
 private slots:
+    void receive(int num);
     void tick();
 
 private:
@@ -50,6 +53,11 @@ private:
     Bird *birdie;
     QTimer timer;
     int mouseEventMode;
+    // For score board
+    MyScoreShow *Digits;
+    MyScoreShow *Tens;
+    MyScoreShow *Hundreds;
+    int totalScore;
 };
 
 #endif // MAINWINDOW_H

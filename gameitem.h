@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QTransform>
 #include <QtMath>
+#include <iostream>
 
 class GameItem : public QObject
 {
@@ -14,13 +15,15 @@ public:
     GameItem(b2World *world);
     ~GameItem();
     static void setGlobalSize(QSizeF worldsize, QSizeF windowsize);
+    virtual void collide();
     b2Body *g_body;
     b2World *g_world;
     QGraphicsPixmapItem g_pixmap;
 
+signals:
+    void emitScore(int num);
 public slots:
     virtual void paint();
-    // virtual void collide();
 
     static QPointF posb2Toqt(float x, float y);
     static b2Vec2 posqtTob2(float x, float y);

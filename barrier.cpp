@@ -42,3 +42,8 @@ void Barrier::paint()
     g_pixmap.setPos(mappedPoint);
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
 }
+
+void Barrier::collide()
+{
+    emit emitScore(2);
+}

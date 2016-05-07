@@ -14,11 +14,33 @@
         <file alias="tile.png">image/TILE.png</file>
         <file alias="tree.png">image/Tree.png</file>
         <file alias="block.png">image/INGAME_BLOCKS_1.png</file>
+        <file>image/number/0.png</file>
+        <file>image/number/1.png</file>
+        <file>image/number/2.png</file>
+        <file>image/number/3.png</file>
+        <file>image/number/4.png</file>
+        <file>image/number/5.png</file>
+        <file>image/number/6.png</file>
+        <file>image/number/7.png</file>
+        <file>image/number/8.png</file>
+        <file>image/number/9.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>sound/jewel collision a2.wav</file>
         <file>sound/main theme.mp3</file>
         <file>sound/rock collision a2.wav</file>
         <file>sound/wood collision a5.wav</file>
+    </qresource>
+    <qresource prefix="/number">
+        <file alias="0.png">image/number/0.png</file>
+        <file alias="1.png">image/number/1.png</file>
+        <file alias="2.png">image/number/2.png</file>
+        <file alias="3.png">image/number/3.png</file>
+        <file alias="4.png">image/number/4.png</file>
+        <file alias="5.png">image/number/5.png</file>
+        <file alias="6.png">image/number/6.png</file>
+        <file alias="7.png">image/number/7.png</file>
+        <file alias="8.png">image/number/8.png</file>
+        <file alias="9.png">image/number/9.png</file>
     </qresource>
 </RCC>

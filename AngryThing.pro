@@ -17,7 +17,9 @@ SOURCES += main.cpp\
     gameitem.cpp \
     bird.cpp \
     land.cpp \
-    barrier.cpp
+    barrier.cpp \
+    mycontactlistener.cpp \
+    myscoreshow.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -70,7 +72,9 @@ HEADERS  += mainwindow.h \
     gameitem.h \
     bird.h \
     land.h \
-    barrier.h
+    barrier.h \
+    mycontactlistener.h \
+    myscoreshow.h
 
 FORMS    += mainwindow.ui
 

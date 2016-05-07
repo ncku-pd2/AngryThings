@@ -17,6 +17,7 @@ public:
     void startShoot();
     void setLinearVelocity(b2Vec2 velocity);
     void paint();
+    void collide();
     float x_pos;
     float y_pos;
     float radius;

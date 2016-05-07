@@ -19,6 +19,11 @@ void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
     g_windowsize = windowsize;
 }
 
+void GameItem::collide()
+{
+
+}
+
 void GameItem::paint()
 {
     b2Vec2 pos = g_body->GetPosition();

@@ -22,6 +22,11 @@ void Bird::paint()
     g_pixmap.setRotation(-(g_body->GetAngle()*180/3.14159));
 }
 
+void Bird::collide()
+{
+    emit emitScore(1);
+}
+
 void Bird::startShoot()
 {
     // Create Body
