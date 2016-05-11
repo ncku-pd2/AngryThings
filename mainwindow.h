@@ -10,6 +10,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMouseEvent>
 #include <iostream>
+#include <QPushButton>
 
 #include <gameitem.h>
 #include <land.h>
@@ -33,7 +34,6 @@ public:
     ~MainWindow();
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *, QEvent *event);
-
     // For statics objects
     void setCatapult();
     QGraphicsPixmapItem *bucket;
@@ -44,7 +44,7 @@ public:
 private slots:
     void receive(int num);
     void tick();
-
+    void reset();
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
@@ -58,6 +58,14 @@ private:
     MyScoreShow *Tens;
     MyScoreShow *Hundreds;
     int totalScore;
+    // For Bird count
+    MyScoreShow *bird_count;
+    int birdcount;
+    // Reset Button
+    QPushButton *resetBtn;
+    QGraphicsPixmapItem *endGame;
+    // QList to maintain the shooted item
+    QList<Bird*> list;
 };
 
 #endif // MAINWINDOW_H

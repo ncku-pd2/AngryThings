@@ -6,10 +6,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    resetBtn = new QPushButton(this);
+    resetBtn->setGeometry(500,this->height()/4,200,200);
+    resetBtn->setIcon(QIcon(QPixmap(":/number/restart.png")));
+    resetBtn->setIconSize(QSize(200,200));
+    resetBtn->hide();
+    connect(resetBtn,SIGNAL(clicked(bool)),this,SLOT(reset()));
+    endGame = new QGraphicsPixmapItem();
+    endGame->setPixmap(QPixmap(":/gameover.png").scaled(300,300));
+    endGame->setPos(100,this->height()/6);
+    endGame->setZValue(100);
     // Enable the event filter
     qApp->installEventFilter(this);
     mouseEventMode = 0;
     totalScore = 0;
+    birdcount = 4;
 }
 
 MainWindow::~MainWindow()
@@ -34,7 +45,7 @@ void MainWindow::showEvent(QShowEvent *)
     // Create bird
     birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
     birdie->g_pixmap.setZValue(3);
-
+    list.push_back(birdie);
     connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
 
     // Create barrier
@@ -52,7 +63,6 @@ void MainWindow::showEvent(QShowEvent *)
     Digits = new MyScoreShow();
     Tens = new MyScoreShow();
     Hundreds = new MyScoreShow();
-
     Digits->showResult(0);
     Digits->setZValue(10);
     Tens->showResult(0);
@@ -65,6 +75,21 @@ void MainWindow::showEvent(QShowEvent *)
     Digits->setPos(this->width()-100,0);
     Tens->setPos(this->width()-150,0);
     Hundreds->setPos(this->width()-200,0);
+    // Add the Bird count
+    bird_count = new MyScoreShow();
+    bird_count->showResult(birdcount);
+    bird_count->setZValue(10);
+    scene->addItem(bird_count);
+    bird_count->setPos(120,10);
+    // Add the Bird's Picture and X
+    QGraphicsPixmapItem *X = new QGraphicsPixmapItem();
+    X->setPixmap(QPixmap(":/number/x.png").scaled(30,40));
+    scene->addItem(X);
+    X->setPos(80,25);
+    QGraphicsPixmapItem *birdpic = new QGraphicsPixmapItem();
+    birdpic->setPixmap(QPixmap(":/bird.png").scaled(50,50));
+    scene->addItem(birdpic);
+    birdpic->setPos(10,20);
     // Add the collide of box2D
     MyContactListener *myContactListenerInstance = new MyContactListener();
     // Attach to the box2D world
@@ -73,7 +98,6 @@ void MainWindow::showEvent(QShowEvent *)
     // Timer
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
     timer.start(100/6);
-
 }
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
@@ -99,15 +123,44 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
-        mouseEventMode = 0;
-        // Get the bird speed to shoot
-        birdie->startShoot();
-        // Get the current bird pos , and get the speed
-        birdie->setLinearVelocity(b2Vec2(-(birdie->g_pixmap.pos().x() - bird_start.x())/2,(birdie->g_pixmap.pos().y() - (bird_start.y()-25))/2));
-        bucket->setPos(bird_start.x(),bird_start.y());
-        line1->setLine(170,350,line_end.x(),line_end.y());
-        line2->setLine(210,350,line_end.x(),line_end.y());
-        timer.start();
+        if(mouseEventMode == 1)
+        {
+            mouseEventMode++;
+            // Get the bird speed to shoot
+            birdie->startShoot();
+            // Get the current bird pos , and get the speed
+            birdie->setLinearVelocity(b2Vec2(-(birdie->g_pixmap.pos().x() - bird_start.x())/2,(birdie->g_pixmap.pos().y() - (bird_start.y()-25))/2));
+            bucket->setPos(bird_start.x(),bird_start.y());
+            line1->setLine(170,350,line_end.x(),line_end.y());
+            line2->setLine(210,350,line_end.x(),line_end.y());
+            timer.start();
+        }
+        else{
+            if(birdcount > 0)
+            {
+                // New a bird
+                // And change the result
+                bird_count->showResult(birdcount);
+                birdcount -= 1;
+                birdie = NULL;
+                birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+                birdie->g_pixmap.setZValue(3);
+                list.push_back(birdie);
+                connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+                // Reset
+                mouseEventMode = 0;
+            }
+            else if(birdcount == 0){
+                // Show End game
+                bird_count->showResult(birdcount);
+                // Show the End Game , and the End game Button
+                scene->addItem(endGame);
+                // Set the resetBtn
+                resetBtn->show();
+
+                birdie = NULL;
+            }
+        }
     }
     return false;
 }
@@ -177,4 +230,50 @@ void MainWindow::tick()
 {
     world->Step(1.0/60.0,6,2);
     scene->update();
+}
+
+void MainWindow::reset()
+{
+    // Delete all the shooted item
+    foreach(Bird *i , list)
+    {
+        cout << "+" << endl;
+        list.removeAt(list.indexOf(i));
+        scene->removeItem(dynamic_cast<QGraphicsItem*> (i));
+        delete i;
+    }
+    mouseEventMode = 0;
+    scene->removeItem(endGame);
+    resetBtn->hide();
+    totalScore = 0;
+    Digits->showResult(0);
+    Tens->showResult(0);
+    Hundreds->showResult(0);
+    birdcount = 4;
+    bird_count->showResult(birdcount);
+    birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+    birdie->g_pixmap.setZValue(3);
+    list.push_back(birdie);
+    connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+
+    // About barrier
+    foreach(GameItem *i , itemList)
+    {
+        itemList.removeAt(itemList.indexOf(i));
+        scene->removeItem(dynamic_cast<QGraphicsItem*> (i));
+        delete i;
+    }
+    // Create barrier
+    Barrier *block1 = new Barrier(16,5,1,4,&timer,QPixmap(":/block.png").scaled(width()/32.0,height()/4.5),world,scene);
+    connect(block1,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+    itemList.push_back(block1);
+    Barrier *block2 = new Barrier(20,6.8,1,4,&timer,QPixmap(":/block.png").scaled(width()/32.0,height()/4.5),world,scene);
+    connect(block2,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+    itemList.push_back(block2);
+    Barrier *block3 = new Barrier(18,8,8,1,&timer,QPixmap(":/block.png").scaled(width()/4.0,height()/18),world,scene);
+    connect(block3,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+    itemList.push_back(block3);
+
+    // Create ground
+    itemList.push_back(new Land(12,1.5,40,3,QPixmap(":/ground.png").scaled(width(),height()/6.0),world,scene));
 }

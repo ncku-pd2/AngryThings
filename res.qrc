@@ -24,6 +24,7 @@
         <file>image/number/7.png</file>
         <file>image/number/8.png</file>
         <file>image/number/9.png</file>
+        <file alias="gameover.png">image/gameover.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>sound/jewel collision a2.wav</file>
@@ -42,5 +43,8 @@
         <file alias="7.png">image/number/7.png</file>
         <file alias="8.png">image/number/8.png</file>
         <file alias="9.png">image/number/9.png</file>
+        <file alias="x.png">image/number/X.png</file>
+        <file alias="restart.png">image/number/restart.png</file>
+        <file alias="leave.png">image/number/leave.png</file>
     </qresource>
 </RCC>

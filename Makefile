@@ -616,19 +616,20 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_res.cpp
 qrc_res.cpp: res.qrc \
 		image/Bucket.png \
-		image/INGAME_BLOCKS_1.png \
-		image/GROUND.png \
-		image/KING_PIG_BOSS.png \
-		image/Pause_Button.png \
-		image/SPLASHES_SHEET_1.png \
 		image/Sky.png \
-		image/Sky_1.png \
-		image/Grass.png \
-		image/Catapult_lower.png \
-		image/Normal_Bird_1.png \
-		image/Tree.png \
+		image/SPLASHES_SHEET_1.png \
 		image/Catapult_upper.png \
+		image/INGAME_BLOCKS_1.png \
+		image/Tree.png \
+		image/GROUND.png \
+		image/Normal_Bird_1.png \
+		image/KING_PIG_BOSS.png \
+		image/Catapult_lower.png \
+		image/gameover.png \
+		image/Sky_1.png \
+		image/Pause_Button.png \
 		image/TILE.png \
+		image/Grass.png \
 		image/number/2.png \
 		image/number/6.png \
 		image/number/1.png \
@@ -641,11 +642,14 @@ qrc_res.cpp: res.qrc \
 		image/number/7.png \
 		image/number/2.png \
 		image/number/6.png \
+		image/number/restart.png \
 		image/number/1.png \
 		image/number/5.png \
 		image/number/9.png \
+		image/number/leave.png \
 		image/number/0.png \
 		image/number/4.png \
+		image/number/X.png \
 		image/number/8.png \
 		image/number/3.png \
 		image/number/7.png
@@ -808,6 +812,9 @@ moc_mainwindow.cpp: ../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QMainWindow \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
@@ -1137,6 +1144,9 @@ main.o: main.cpp mainwindow.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
@@ -1315,6 +1325,9 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtGui/QMouseEvent \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QPushButton \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qpushbutton.h \
+		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qabstractbutton.h \
 		gameitem.h \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
 		../Qt5.5.1/5.5/gcc_64/include/QtWidgets/qgraphicsitem.h \
