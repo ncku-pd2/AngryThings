@@ -19,6 +19,7 @@ public:
     b2Body *g_body;
     b2World *g_world;
     QGraphicsPixmapItem g_pixmap;
+    static float groundHeight;
 
 signals:
     void emitScore(int num);

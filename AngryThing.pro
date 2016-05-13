@@ -19,7 +19,11 @@ SOURCES += main.cpp\
     land.cpp \
     barrier.cpp \
     mycontactlistener.cpp \
-    myscoreshow.cpp
+    myscoreshow.cpp \
+    enemy.cpp \
+    speedbird.cpp \
+    tribird.cpp \
+    maindialog.cpp
 
 HEADERS  += mainwindow.h \
     Box2D/Collision/Shapes/b2ChainShape.h \
@@ -74,9 +78,14 @@ HEADERS  += mainwindow.h \
     land.h \
     barrier.h \
     mycontactlistener.h \
-    myscoreshow.h
+    myscoreshow.h \
+    enemy.h \
+    speedbird.h \
+    tribird.h \
+    maindialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    maindialog.ui
 
 LIBS += -L. -lBox2D
 

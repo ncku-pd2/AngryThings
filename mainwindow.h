@@ -18,6 +18,10 @@
 #include <barrier.h>
 #include <mycontactlistener.h>
 #include <myscoreshow.h>
+#include <enemy.h>
+#include <speedbird.h>
+#include <tribird.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -41,6 +45,9 @@ public:
     QGraphicsLineItem *line2;
     QPoint mouse_start, bird_start, line_end;
 
+signals:
+    void quitGame();
+
 private slots:
     void receive(int num);
     void tick();
@@ -51,6 +58,7 @@ private:
     b2World *world;
     QList<GameItem *> itemList;
     Bird *birdie;
+    Enemy *pig;
     QTimer timer;
     int mouseEventMode;
     // For score board
@@ -62,10 +70,12 @@ private:
     MyScoreShow *bird_count;
     int birdcount;
     // Reset Button
-    QPushButton *resetBtn;
+    QPushButton *resetBtn, *startBtn;
     QGraphicsPixmapItem *endGame;
     // QList to maintain the shooted item
     QList<Bird*> list;
+
+    bool started;
 };
 
 #endif // MAINWINDOW_H

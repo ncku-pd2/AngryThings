@@ -25,6 +25,8 @@
         <file>image/number/8.png</file>
         <file>image/number/9.png</file>
         <file alias="gameover.png">image/gameover.png</file>
+        <file alias="yellowBird.png">image/INGAME_BIRDS_1.png</file>
+        <file alias="blueBird.png">image/INGAME_BIRDS_2.png</file>
     </qresource>
     <qresource prefix="/sound">
         <file>sound/jewel collision a2.wav</file>

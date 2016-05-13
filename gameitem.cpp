@@ -12,6 +12,7 @@ GameItem::~GameItem()
 
 QSizeF GameItem::g_windowsize = QSizeF();
 QSizeF GameItem::g_worldsize = QSizeF();
+float GameItem::groundHeight = 0.0f;
 
 void GameItem::setGlobalSize(QSizeF worldsize, QSizeF windowsize)
 {

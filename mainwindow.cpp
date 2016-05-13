@@ -3,7 +3,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    started(false)
 {
     ui->setupUi(this);
     resetBtn = new QPushButton(this);
@@ -40,13 +41,19 @@ void MainWindow::showEvent(QShowEvent *)
     world = new b2World(b2Vec2(0.0f, -9.8f));
     GameItem::setGlobalSize(QSizeF(32,18),size());
     // Create ground
+    GameItem::groundHeight = 3;
     itemList.push_back(new Land(12,1.5,40,3,QPixmap(":/ground.png").scaled(width(),height()/6.0),world,scene));
 
     // Create bird
-    birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+    birdie = new TriBird(3.0f,6.0f,0.25f,&timer,QPixmap(":/blueBird.png").scaled(height()/9.0,height()/9.0),world,scene,true);
     birdie->g_pixmap.setZValue(3);
     list.push_back(birdie);
     connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
+
+    // Create enemy
+    pig = new Enemy(17.5f,6.0f,1.0f,&timer,QPixmap(":/king_pig.png").scaled(height()/9.0,height()/9.0),world,scene);
+    pig->g_pixmap.setZValue(3);
+    connect(pig,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
 
     // Create barrier
     Barrier *block1 = new Barrier(16,5,1,4,&timer,QPixmap(":/block.png").scaled(width()/32.0,height()/4.5),world,scene);
@@ -102,15 +109,26 @@ void MainWindow::showEvent(QShowEvent *)
 
 bool MainWindow::eventFilter(QObject *, QEvent *event)
 {
+    static int countBounce = 0;
     if(event->type() == QEvent::MouseButtonPress && mouseEventMode == 0)
     {
         // dynamic cast the event
         QMouseEvent *nowPos = dynamic_cast<QMouseEvent *>(event);
-        mouseEventMode = 1;
-        birdie->g_pixmap.setPos(bird_start.x() , bird_start.y() - 25);
-        timer.stop();
-        // Get the start position
-        mouse_start = QPoint(nowPos->screenPos().x(), nowPos->screenPos().y());
+        if(!started || list.at(list.size()-2)->grounded){
+            mouseEventMode = 1;
+            birdie->g_pixmap.setPos(bird_start.x() , bird_start.y() - 25);
+            timer.stop();
+            // Get the start position
+            mouse_start = QPoint(nowPos->screenPos().x(), nowPos->screenPos().y());
+            started = true;
+        }else{
+            if(countBounce >= 4){
+                list.at(list.size()-2)->click();
+                countBounce = 0;
+            }else{
+                countBounce++;
+            }
+        }
     }
     if(event->type() == QEvent::MouseMove && mouseEventMode == 1)
     {
@@ -129,13 +147,13 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
             // Get the bird speed to shoot
             birdie->startShoot();
             // Get the current bird pos , and get the speed
-            birdie->setLinearVelocity(b2Vec2(-(birdie->g_pixmap.pos().x() - bird_start.x())/2,(birdie->g_pixmap.pos().y() - (bird_start.y()-25))/2));
+            birdie->setLinearVelocity(b2Vec2(-(birdie->g_pixmap.pos().x() - bird_start.x())/3.0f,(birdie->g_pixmap.pos().y() - (bird_start.y()-25))/3.0f));
             bucket->setPos(bird_start.x(),bird_start.y());
             line1->setLine(170,350,line_end.x(),line_end.y());
             line2->setLine(210,350,line_end.x(),line_end.y());
             timer.start();
         }
-        else{
+        if(mouseEventMode == 2){
             if(birdcount > 0)
             {
                 // New a bird
@@ -143,14 +161,23 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 bird_count->showResult(birdcount);
                 birdcount -= 1;
                 birdie = NULL;
-                birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+                switch (rand() % 2) {
+                case 0:
+                    birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+                    break;
+                case 1:
+                    birdie = new SpeedBird(3.0f,6.0f,0.25f,&timer,QPixmap(":/yellowBird.png").scaled(height()/9.0,height()/9.0),world,scene);
+                    break;
+                default:
+                    break;
+                }
                 birdie->g_pixmap.setZValue(3);
                 list.push_back(birdie);
                 connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
                 // Reset
                 mouseEventMode = 0;
             }
-            else if(birdcount == 0){
+            else if(birdcount <= 0){
                 // Show End game
                 bird_count->showResult(birdcount);
                 // Show the End Game , and the End game Button
@@ -224,6 +251,14 @@ void MainWindow::receive(int num)
         Hundreds->showResult(totalScore/100);
         //cout << "Now +2" << endl;
     }
+    if(num == 100)
+        {
+            totalScore+=100;
+            Digits->showResult(totalScore%10);
+            Tens->showResult((totalScore%100)/10);
+            Hundreds->showResult(totalScore/100);
+            //cout << "Now +2" << endl;
+        }
 }
 
 void MainWindow::tick()
@@ -237,11 +272,11 @@ void MainWindow::reset()
     // Delete all the shooted item
     foreach(Bird *i , list)
     {
-        cout << "+" << endl;
         list.removeAt(list.indexOf(i));
         scene->removeItem(dynamic_cast<QGraphicsItem*> (i));
         delete i;
     }
+    started = false;
     mouseEventMode = 0;
     scene->removeItem(endGame);
     resetBtn->hide();
@@ -250,12 +285,17 @@ void MainWindow::reset()
     Tens->showResult(0);
     Hundreds->showResult(0);
     birdcount = 4;
+    TriBird::clearBuffer();
     bird_count->showResult(birdcount);
-    birdie = new Bird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene);
+    birdie = new TriBird(3.0f,6.0f,0.25f,&timer,QPixmap(":/bird.png").scaled(height()/9.0,height()/9.0),world,scene,true);
     birdie->g_pixmap.setZValue(3);
     list.push_back(birdie);
     connect(birdie,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
-
+    // Create enemy
+    delete pig;
+    pig = new Enemy(17.5f,6.0f,1.0f,&timer,QPixmap(":/king_pig.png").scaled(height()/9.0,height()/9.0),world,scene);
+    pig->g_pixmap.setZValue(3);
+    connect(pig,SIGNAL(emitScore(int)),this,SLOT(receive(int)));
     // About barrier
     foreach(GameItem *i , itemList)
     {
